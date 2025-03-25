@@ -1,0 +1,72 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html{
+    height: 100%
+}
+header{
+    height: 150px;
+    width: 100%;
+    background-color: rgb(60, 8, 83);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 40px 0 30px;
+}
+
+body{
+   height: 100%;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+}
+
+.logo{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.links{
+
+    display: flex;
+    gap: 44px;
+}
+
+.links>*{
+    color: white;
+    text-decoration: none;
+}
+
+.main{
+    padding: min(8%, 80px);
+}
+
+
+/* barrita del scroll */
+
+::-webkit-scrollbar {
+    width: 6px; /* Cambia el tamaño según necesites */
+}
+
+/* Color del fondo de la barra */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+/* Color de la barra de desplazamiento */
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+}
+
+/* Cambia el color cuando el usuario pasa el mouse */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
