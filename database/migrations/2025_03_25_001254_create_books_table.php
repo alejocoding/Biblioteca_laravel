@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('books', function (Blueprint $table) {
             $table->unsignedBigInteger('id');
             $table->primary('id');
+            $table->string('foto',500);
             $table->string('Nombre_libro');
             $table->integer('stock');
             $table->integer('copias_prestadas');

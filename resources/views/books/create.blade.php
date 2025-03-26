@@ -2,7 +2,11 @@
 
 @section('content')
 
+<form action="{{url('books')}}" method="POST" enctype="multipart/form-data" class="">
+    @csrf
 
-CREAR LIBROS
+    @include('books.form')
+
+</form>
 
 @endsection

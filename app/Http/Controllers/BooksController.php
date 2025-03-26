@@ -13,7 +13,8 @@ class BooksController extends Controller
     public function index()
     {
         //
-        return view('books.index');
+        $books['books'] = books::all();
+        return view('books.index', $books);
     }
 
     /**
@@ -31,6 +32,15 @@ class BooksController extends Controller
     public function store(Request $request)
     {
         //
+        $datos_libro = request()->except('_token');
+
+        if($request->hasFile('foto')){
+
+            $datos_libro['foto'] = $request->file('foto')->store('uploads', 'public');
+        }
+        books::insert($datos_libro);
+
+        return redirect('books');
     }
 
     /**
@@ -47,21 +57,28 @@ class BooksController extends Controller
     public function edit(books $books)
     {
         //
+        return view('books.editar');
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, books $books)
+    public function update(Request $request, $id)
     {
         //
+        $datos_libro = request()->except('_token');
+
+        books::where('id', '=', $id)->update($datos_libro);
+
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(books $books)
+    public function destroy($id)
     {
         //
+        books::destroy($id);
+        return redirect('/books');
     }
 }
