@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\User;
+use App\Models\estado;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -9,7 +10,8 @@ class UserController extends Controller
     public function index()
     {
         //
-        return view('User.index');
+        $Users['Users'] = User::all();
+        return view('User.index', $Users);
     }
 
     /**
@@ -17,8 +19,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
-        return view('User.create');
+        $estados = estado::skip(2)->take(2)->get();
+        return view('User.create', compact('estados'));
     }
 
     /**
@@ -27,6 +29,11 @@ class UserController extends Controller
     public function store(Request $request)
     {
         //
+        $usuario = request()->except('_token');
+        User::create($usuario);
+
+        return $usuario;
+
     }
 
     /**

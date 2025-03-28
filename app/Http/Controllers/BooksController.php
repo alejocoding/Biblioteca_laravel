@@ -23,6 +23,7 @@ class BooksController extends Controller
     public function create()
     {
         //
+
         return view('books.create');
     }
 
@@ -54,10 +55,11 @@ class BooksController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(books $books)
+    public function edit($id)
     {
         //
-        return view('books.editar');
+        $libro = books::findOrFail($id);
+        return view('books.editar', compact('libro'));
     }
 
     /**
@@ -66,9 +68,16 @@ class BooksController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $datos_libro = request()->except('_token');
+        $datos_libro = request()->except('_token', '_method');
+
+        if($request->hasFile('foto')){
+
+            $datos_libro['foto'] = $request->file('foto')->store('uploads', 'public');
+        }
 
         books::where('id', '=', $id)->update($datos_libro);
+
+        return redirect('books');
 
     }
 

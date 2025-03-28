@@ -21,6 +21,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'Telefono',
+        'id_estado'
     ];
 
     /**
@@ -47,5 +49,5 @@ class User extends Authenticatable
     }
 
 
-   
+
 }
